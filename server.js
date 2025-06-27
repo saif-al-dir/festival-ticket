@@ -24,12 +24,8 @@ app.use("/api", seatsRoutes);
 // Serve static files from React build
 app.use(express.static(path.join(__dirname, "client/build")));
 
-// Catch-all handler for React Router (only for non-API routes)
-app.get("/*", (req, res) => {
-    // Don't serve index.html for API routes
-    if (req.path.startsWith('/api')) {
-        return res.status(404).send('API endpoint not found');
-    }
+// Catch-all handler for React Router
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
