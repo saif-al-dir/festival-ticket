@@ -38,6 +38,8 @@ app.use("/api", seatsRoutes);
 
 app.get(["/", "/prices", "/order-a-ticket"], (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 
 // Serve the React app for specific routes
 app.get('', (req, res) => {
