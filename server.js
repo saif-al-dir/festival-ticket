@@ -2,18 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
+mongoose.connect(process.env.FESTIVAL_MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
-db.once('open', () => console.log('Connected to MongoDB'));
+db.once('open', () => console.log('Connected to MongoDB Atlas'));
 db.on('error', err => console.log('MongoDB error:', err));
 
 // Middleware
